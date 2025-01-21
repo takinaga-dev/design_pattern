@@ -1,0 +1,14 @@
+@startuml
+interface CustomAggregate {
+  iterator() : CustomIterator
+}
+interface CustomIterator
+class BookShelfIterator
+class BookShelf
+class Book
+
+BookShelfIterator --|> CustomIterator
+BookShelf --|> CustomAggregate
+BookShelf o-- Book
+CustomAggregate ..> CustomIterator : creates
+@enduml
