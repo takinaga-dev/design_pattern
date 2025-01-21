@@ -1,0 +1,2 @@
+# design_pattern
+rustでJava言語で学ぶデザインパターン入門を書き換える練習
