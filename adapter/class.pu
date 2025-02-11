@@ -1,0 +1,17 @@
+@startuml
+interface KvAdapter {
+  set(key: K, value: String)
+  get(key: K): value: String
+}
+class newKV {
+  new(config_path: &str)
+  set(key: K, value: &str)
+  get(key: K): value: Option<String>
+}
+class kv
+class main
+
+main ..> KvAdapter : uses
+newKV --|> KvAdapter
+newKV o-- kv
+@enduml
