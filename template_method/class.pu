@@ -1,0 +1,27 @@
+@startuml
+interface template {
+  start(&self);
+  exec(&self);
+  end(&self);
+}
+
+class ImplTempl {
+  new(&self);
+  start(&self);
+  exec(&self);
+  end(&self)
+}
+
+interface FinalHook {
+  play(t: &template);
+}
+interface Sealed {}
+class ImplFinalHook {}
+
+ImplTempl --|> template
+ImplFinalHook --|> FinalHook
+FinalHook ..> Sealed : trait制約
+ImplFinalHook --|> Sealed
+ImplFinalHook ..> template : use
+main ..> ImplFinalHook : use
+@enduml
