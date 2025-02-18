@@ -1,0 +1,31 @@
+@startuml
+interface Factory {
+  fn createProduct()
+}
+interface SealedFactory {
+  fn create<T: Factory>(n: T) -> Product 
+}
+interface Product {
+  fn test()
+}
+
+class ImplFactory {
+  fn createProduct()
+}
+
+class ImplProduct {
+  fn test()
+}
+
+class ImplSealedFactory {
+  fn create<T: Factory>(n: T) -> Product 
+}
+
+ImplFactory --|> Factory
+SealedFactory ..> Sealed : trait制約
+ImplSealedFactory --|> SealedFactory
+ImplSealedFactory --|> Sealed
+ImplProduct --|> Product
+ImplSealedFactory ..> ImplFactory : use
+ImplSealedFactory ..> ImplProduct : create
+@enduml
