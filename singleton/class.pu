@@ -1,0 +1,19 @@
+@startuml
+class Singleton {
+  {static} + getInstance(value: &'static str): &'static Singleton
+  + get_value(&self) &'static str
+}
+
+entity INSTANCE
+
+Singleton --> INSTANCE: use
+
+class MSingleton {
+  {static} + getInstance(value: &'static str): &'static Mutex<Singleton>
+  + get_value(&self) &'static str
+}
+
+entity MINSTANCE
+
+MSingleton --> MINSTANCE: use
+@enduml
