@@ -1,0 +1,28 @@
+@startuml
+interface Product {
+  void tukau(&mut self, s: String);
+  void Product create_clone(&mut self) -> Box<dyn Product>
+}
+
+class UnderlinePen {
+  ulchar: String
+}
+
+class MessageBox {
+  decochar: String
+}
+
+class Manager {
+  showcase: HashMap
+  register(&mut self, name: String, proto: Product)
+  create(&mut self, name: String) -> Option<Box<dyn Product>>>
+}
+
+Product ..> Clone : requires
+UnderlinePen --|> Product: 継承
+UnderlinePen --|> Clone: derive
+MessageBox --|> Product: 継承
+MessageBox --|> Clone: derive
+Manager ..> Product: use
+
+@enduml
