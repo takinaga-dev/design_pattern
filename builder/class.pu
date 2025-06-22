@@ -1,0 +1,20 @@
+@startuml
+interface Builder {
+  fn makeTitle(title: String) -> &mut Self
+  fn makeString(str: String) -> &mut Self
+  fn makeItems(items: Vec<String>) -> &mut Self
+}
+
+class TextBuilder {
+  buffer: String
+}
+
+class HtmlBuilder {
+  filename: String
+}
+
+TextBuilder --|> Builder
+HtmlBuilder --|> Builder
+main ..> TextBuilder : use
+main ..> HtmlBuilder : use
+@enduml
