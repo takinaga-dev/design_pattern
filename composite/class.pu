@@ -1,0 +1,30 @@
+@startuml
+
+interface Entry {
+  fn get_name() -> str
+  fn get_size() -> u32
+  fn print_list()
+  fn add(entry: Entry) # Fileではこいつは実装しなくて良い
+}
+
+class File {
+  name: str
+  size: u32
+  fn get_name() -> str
+  fn get_size() -> u32
+  fn print_list()
+}
+
+class Directory {
+  name: str
+  directory: Entry[]
+  fn get_name() -> str
+  fn get_size() -> u32
+  fn print_list()
+  fn add(entry: Entry)
+}
+
+File --|> Entry: implements
+Directory --|> Entry: implements
+Directory o-- Entry : contains
+@enduml

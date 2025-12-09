@@ -7,6 +7,8 @@ trait CustomIterator<'a> {
 /// このtraitを実装するオブジェクトのiteratorを払い出すためだけのtrait
 trait CustomAggregate {
     // Box<dyn ...>ってどういう意味?
+    // CustomIteratorの型を実装したオブジェクトであることを示す。
+    // Rustは基本的にコンパイル時にオブジェクトのサイズを決定するが、Boxを使うことで可変にできる。
     fn iterator(&mut self) -> Box<dyn CustomIterator<'_> + '_>;
 
 }

@@ -3,7 +3,7 @@ use std::sync::Mutex;
 use once_cell::sync::OnceCell;
 
 pub struct Singleton {
-    value: &'static str,
+    pub value: &'static str,
 }
 
 pub struct MSingleton {

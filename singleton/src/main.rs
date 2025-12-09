@@ -5,7 +5,6 @@ fn main() {
     let singleton2 = singleton::Singleton::get_instance("hello world2");
     println!("{}", singleton.get_value());
     println!("{}", singleton2.get_value());
-
     // mutable
     let msingleton = singleton::MSingleton::get_mutex_instance("heelo");
     let mut v = msingleton.lock().unwrap();

@@ -7,8 +7,11 @@ class BookShelfIterator
 class BookShelf
 class Book
 
-BookShelfIterator --|> CustomIterator
-BookShelf --|> CustomAggregate
-BookShelf o-- Book
+BookShelfIterator --|> CustomIterator : implements
+
+BookShelf --|> CustomAggregate : implements
+
+BookShelf o-- Book : contains
+
 CustomAggregate ..> CustomIterator : creates
 @enduml
