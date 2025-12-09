@@ -18,7 +18,39 @@ impl ImplProduct {
         }
     }
 }
+// 追加実装
+struct ImplNewProduct {
+    version: i32
+}
 
+impl ImplNewProduct {
+    fn new(v: i32) -> Self {
+        ImplNewProduct {
+            version: v
+        }
+    }
+}
+
+impl Product for ImplNewProduct {
+    fn test(&mut self) {
+        println!("version: {}", self.version);
+    }
+}
+
+#[derive(Debug)]
+struct newImplFactory {}
+impl newImplFactory {
+    fn new() -> Self {
+        newImplFactory {}
+    }
+}
+
+impl Factory for newImplFactory {
+    fn createProduct(&mut self, value: String) -> Box<dyn Product> {
+        Box::new(ImplNewProduct::new(value.parse().unwrap()))
+    }
+}
+#[derive(Debug)]
 struct ImplFactory {}
 impl ImplFactory {
     fn new() -> Self {
@@ -41,13 +73,16 @@ impl Product for ImplProduct {
     }
 }
 mod internal {
+    use std::fmt::Debug;
+
     use crate::Product;
     use crate::Factory;
 
     trait Sealed {}
     pub trait SelaedFactory : Sealed {
-        fn create<T: Factory>(n: &mut T, v: String) -> Box<dyn Product> {
-            n.createProduct(v)    
+        fn create<T: Factory + Debug>(n: &mut T, v: String) -> Box<dyn Product> {
+            println!("Befor create {:?} ", n);
+            n.createProduct(v)
         }
     }
     pub struct ImplSealedFactory {}
@@ -60,4 +95,8 @@ fn main() {
     let mut product = ImplSealedFactory::create(&mut ImplF, "Hello World".to_string());
     let p = product.as_mut();
     p.test();
+
+    let mut newF = newImplFactory::new();;
+    let mut newP = ImplSealedFactory::create(&mut newF, "2".to_string());
+    newP.test();
 }

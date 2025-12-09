@@ -21,7 +21,7 @@ class ImplSealedFactory {
   fn create<T: Factory>(n: T) -> Product 
 }
 
-ImplFactory --|> Factory
+ImplFactory --|> Factory: implements
 SealedFactory ..> Sealed : trait制約
 ImplSealedFactory --|> SealedFactory
 ImplSealedFactory --|> Sealed
