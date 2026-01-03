@@ -1,0 +1,14 @@
+## Command pattern
+
+一つ一つの操作をCommand.executeで実行できる単位で分離することで実行履歴やundo/clearなどを実装しやすくするパターン
+
+今回はtext editorっぽい何かを実装してみよう
+
+## 実際利用用途あるかな？
+
+あまり実用性はないが、TextEditorというクラスを実装してReciverと履歴を持たせました。
+`type_char`関数を実行すると即座にbufferに書き込んでbufferを出力します。
+
+printはprintと言う名の再実行でbufferをクリアにしてhistoryにあるコマンドを再実行します。
+
+type_charで即座に出力する仕様にしたのは意図的。

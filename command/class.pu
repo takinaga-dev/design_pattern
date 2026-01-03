@@ -1,0 +1,30 @@
+@startuml
+
+interface Command {
+  execute()
+}
+
+class Commands {
+  execute()
+  commands: Vec<Box<dyn Command>>
+}
+class PrintCharCommand {
+  reciver: Box<dyn Reciver>
+  execute()
+}
+
+interface Reciver {
+  write()
+}
+
+class PrintTextFieldBuffer
+class Invoker
+
+PrintCharCommand --|> Command: implements
+PrintCharCommand o-- PrintTextFieldBuffer: contain Reciverならば許容するため本来はReciverをcontainかも
+PrintTextFieldBuffer --|> Reciver: implements
+Commands --|> Command: implements
+Commands o-- Command: contain
+Invoker ..> Commands: execute
+
+@enduml
